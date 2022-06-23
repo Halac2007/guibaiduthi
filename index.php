@@ -1,16 +1,20 @@
 <?php include 'dbcon.php'; ?>
- 
+
 <!DOCTYPE html>
 <html lang="en">
-<head> 
-    <link rel="stylesheet" href=
-"https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href=
+"bootstrap.min.css">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="container" style="margin-top:30px">
+<div class="container" style="margin-top:3%">
         <div class="row" >
-            <div class="col-lg-6 col-md-6 col-12" style="border: 1px solid #88888869">
+            <div class="col-lg-8 col-md-12 col-sm-12 col-xs-12" style="border: 1px solid #88888869">
             <p style="text-align: center; font-size: 1.5rem; font-weight: bold;">Gửi bài dự thi</p>
                 <form method="post" enctype="multipart/form-data">
                     <?php
@@ -19,58 +23,55 @@
                         {
                       
                           $name = $_POST['name'];    
-                          $sodienthoai = $_POST['sodienthoai'];                  
+                          $sodienthoai = $_POST['sodienthoai']; 
+                          $email = $_POST['email']; 
+                          $content = $_POST['content'];                    
  
                           if (isset($_FILES['pdf_file']['name']))
                           {  
-                            $accept = ["jpg", "png", "gif", "webp"];
+                            $accept = ["jpg", "png", "gif", "doc", "docx", "pdf"];
                       
+                            $upext = strtolower(pathinfo($_FILES["pdf_file"]["name"], PATHINFO_EXTENSION));
+
+
                             $file_name = $_FILES['pdf_file']['name'];
                             $file_tmp = $_FILES['pdf_file']['tmp_name'];
                              
-                      
-                            move_uploaded_file($file_tmp,"./pdf/".$file_name);
-                     
-                            $insertquery =
-                            "INSERT INTO datafile(username,sdt, filename) VALUES('$name','$sodienthoai','$file_name')";
-                             
-                      
-                            $iquery = mysqli_query($con, $insertquery);     
- 
-                                if ($iquery)
-                               {                            
-                    ?>                                             
-                                  <div class=
+                            if (in_array($upext, $accept)){
+                              move_uploaded_file($file_tmp,"./pdf/".$file_name);
+                              $insertquery =
+                              "INSERT INTO datafile(username,sdt,email, content, filename) VALUES('$name','$sodienthoai', '$email', '$content','$file_name')";
+                              $iquery = mysqli_query($con, $insertquery);  
+                              if($iquery){
+                                ?>
+                                <div class=
                                 "alert alert-success alert-dismissible fade show text-center">
                                     
                                     <strong>Bài dự thi đã được gửi đi thành công!</strong> 
                                   </div>
                                 <?php
-                                }
-                                else
-                                {
+                              }
+                              else{
+                                ?>
+                                <div> <strong>Failed!</strong> Try Again!</div>
+                                <?php 
+                              }
+                                
+                              }
+                              else
+                              {
                                 ?>
                                   <div class=
-                                "alert alert-danger alert-dismissible fade show text-center">
-                                    <a class="close" data-dismiss="alert" aria-label="close">
-                                      ×
-                                    </a>
-                                    <strong>Failed!</strong> Try Again!
+                                  "alert alert-danger alert-dismissible fade show text-center">
+                                    <strong>Thất bại!</strong> Tệp phải được gửi lên ở định dạng PDF, Word, Image (.pdf,.doc, .docx,.jpg, .png, .gif)
                                   </div>
                                 <?php
-                                }
                             }
-                            else
-                            {
-                              ?>
-                                <div class=
-                                "alert alert-danger alert-dismissible fade show text-center">
-                                  <a class="close" data-dismiss="alert" aria-label="close">
-                                    
-                                  </a>
-                                  <strong>Failed!</strong> File must be uploaded in PDF format!
-                                </div>
-                              <?php
+                            
+                            
+    
+                           
+                            
                             }// end if
                         }// end if
                     ?>
@@ -85,7 +86,17 @@
                         
                             <input type="number" class="form-control"
                                    placeholder="Số điện thoại" name="sodienthoai">
-                        </div>                                 
+                        </div>     
+                        <div class="form-group">
+                        
+                            <input type="text" class="form-control"
+                                   placeholder="email" name="email">
+                        </div>
+                        <div class="form-group">
+                        
+                        <Textarea class="content" name="content" cols=60 row=15 value="Nhập nội dung"></Textarea>
+                           
+                        </div>                                    
                         <div class="form-group">
                           
                             <input type="file" name="pdf_file"
