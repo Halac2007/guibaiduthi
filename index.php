@@ -1,22 +1,19 @@
 <?php include 'dbcon.php'; ?>
-
+ 
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-  <link rel="stylesheet" href=
+<head> 
+    <link rel="stylesheet" href=
 "bootstrap.min.css">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 <div class="container" style="margin-top:3%">
         <div class="row" >
-            <div class="col-lg-8 col-md-12 col-sm-12 col-xs-12" style="border: 1px solid #88888869">
-            <p style="text-align: center; font-size: 1.5rem; font-weight: bold;">Gửi bài dự thi</p>
+            <div class="col-lg-8 col-md-12 col-sm-12 col-xs-12">
+           
                 <form method="post" enctype="multipart/form-data">
+                <p style="text-align: center; font-size: 1.5rem; font-weight: bold;">Gửi bài dự thi</p>
                     <?php
                       
                         if (isset($_POST['submit']))
@@ -63,7 +60,7 @@
                                 ?>
                                   <div class=
                                   "alert alert-danger alert-dismissible fade show text-center">
-                                    <strong>Thất bại!</strong> Tệp phải được gửi lên ở định dạng PDF, Word, Image (.pdf,.doc, .docx,.jpg, .png, .gif)
+                                    <strong>Thất bại!</strong> Vui lòng tải tệp lên ở định dạng PDF, Word, Image (.pdf,.doc, .docx, .jpg, .png, .gif)
                                   </div>
                                 <?php
                             }
@@ -76,21 +73,21 @@
                         }// end if
                     ?>
                      
-                    <div class="form-input py-2">
+                    <div class="form-input py-2" action="#" >
                         <div class="form-group">
                      
                             <input type="text" class="form-control"
-                                   placeholder="Họ và tên" name="name">
+                                   placeholder="Họ và tên" name="name" required> 
                         </div>   
                         <div class="form-group">
                         
                             <input type="number" class="form-control"
-                                   placeholder="Số điện thoại" name="sodienthoai">
+                                   placeholder="Số điện thoại" name="sodienthoai" required>
                         </div>     
                         <div class="form-group">
                         
                             <input type="text" class="form-control"
-                                   placeholder="email" name="email">
+                                   placeholder="email" name="email" required>
                         </div>
                         <div class="form-group">
                         
@@ -100,7 +97,7 @@
                         <div class="form-group">
                           
                             <input type="file" name="pdf_file"
-                                   class="form-control" accept=" .png, .jpg, .jpeg" multiple />
+                                   class="form-control" accept=" .png, .jpg, .jpeg" multiple required />
                         </div>
                         <div class="form-group" style="text-align: center">
                             <input type="submit"
