@@ -1,19 +1,49 @@
 <?php include 'dbcon.php'; ?>
- 
 <!DOCTYPE html>
 <html lang="en">
-<head> 
-    <link rel="stylesheet" href=
-"bootstrap.min.css">
-    <link rel="stylesheet" href="style.css">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href=
+"css/bootstrap.min.css">
+ 
 </head>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v14.0" nonce="CeiFkQrL"></script>
 <body>
-<div class="container" style="margin-top:3%">
+<div id="fb-root"></div>
+
+ 
+<header>
+      <div id="navbar" class="nav-bar" data-scroll>
+        <a href="" class="logo">
+          <img src="https://static-cms-plo.zadn.vn/v3/web/styles/img/logo.png" alt="" height="40px"/>
+        </a>
+       
+        <div class="navigation">
+          <div class="rank-1">
+            <div class="wrap-iframe">
+              <div class="wrap-iframe">
+              <div class="fb-like" data-href="/index.php" data-width="" data-layout="button" data-action="like" data-size="small" data-share="true"></div>
+              </div>
+            </div>
+            
+
+            
+          </div>
+        </div>
+        <i class="uil uil-apps nav-menu-btn"></i>
+      </div>
+    </header>
+<div class="container" style="margin-top:12%">
+
         <div class="row" >
             <div class="col-lg-8 col-md-12 col-sm-12 col-xs-12">
            
                 <form method="post" enctype="multipart/form-data">
-                <p style="text-align: center; font-size: 1.5rem; font-weight: bold;">Gửi bài dự thi</p>
+                <p style="text-align: center; font-size: 1.5rem; font-weight: bold;">GỬI BÀI DỰ THI</p>
                     <?php
                       
                         if (isset($_POST['submit']))
@@ -26,7 +56,7 @@
  
                           if (isset($_FILES['pdf_file']['name']))
                           {  
-                            $accept = ["jpg", "png", "gif", "doc", "docx", "pdf"];
+                            $accept = ["jpg", "png", "doc", "docx", "pdf"];
                       
                             $upext = strtolower(pathinfo($_FILES["pdf_file"]["name"], PATHINFO_EXTENSION));
 
@@ -60,7 +90,7 @@
                                 ?>
                                   <div class=
                                   "alert alert-danger alert-dismissible fade show text-center">
-                                    <strong>Thất bại!</strong> Vui lòng tải tệp lên ở định dạng PDF, Word, Image (.pdf,.doc, .docx, .jpg, .png, .gif)
+                                    <strong>Thất bại!</strong> Vui lòng tải tệp lên ở định dạng PDF, Word, Image (.pdf,.doc, .docx, .jpg, .png)
                                   </div>
                                 <?php
                             }
@@ -87,7 +117,7 @@
                         <div class="form-group">
                         
                             <input type="text" class="form-control"
-                                   placeholder="email" name="email" required>
+                                   placeholder="Email" name="email" required>
                         </div>
                         <div class="form-group">
                         
