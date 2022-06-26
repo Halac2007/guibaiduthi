@@ -1,4 +1,21 @@
-<?php include 'dbcon.php'; ?>
+<?php
+include "dbcon.php";
+
+
+if(!isset($_SESSION['uname'])){
+    header("Location: login.php"); 
+    exit;
+}
+
+
+
+// logout
+if(isset($_POST['but_logout'])){
+    session_destroy();
+    header('Location: login.php');
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,8 +28,37 @@
 "css/bootstrap.min.css">
  
 </head>
+<style>
+  .form-logout form {
+ 
+  text-align: right;
+  border: none;
+
+     background: none;
+     border-radius:none; 
+    margin-left: 20%;
+}
+
+.form-logout form input{
+    border: 2px solid #ccc;
+padding: 10px;
+    background:#2a5194;
+    color: #fff;
+    border-radius: 15px;
+
+}
+[type='button']:not(:disabled), [type='reset']:not(:disabled), [type='submit']:not(:disabled), button:not(:disabled){
+    width: 100px !important;
+}
+</style>
 <body>
+<div class="form-logout">
+<form method='post' action="" >
+            <input type="submit" value="Đăng xuất" name="but_logout">
+        </form>
+</div>
 <div class="container" style="margin-top:30px">
+
         <div class="row">          
              
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -62,3 +108,15 @@
     </div>
 </body>
 </html>
+
+<!-- 
+<!doctype html>
+<html>
+    <head></head>
+    <body>
+        <h1>Homepage</h1>
+        <form method='post' action="">
+            <input type="submit" value="Logout" name="but_logout">
+        </form>
+    </body>
+</html> -->
