@@ -17,7 +17,7 @@ form {
   background: #fff;
   border-radius: 15px;
   margin-left: 20%;
-  box-shadow: 0px 2px 2px 0px grey;
+  box-shadow: 0px 2px 2px 0px grey !important;
 }
 table {
   border-collapse: collapse;
@@ -129,7 +129,7 @@ header .nav-bar {
 
 .btnRegister {
   background: rgb(21, 165, 231);
-  border: 2px solid rgb(204, 204, 204);
+  color: #fff;
   color: #fff;
   font-weight: 500;
   border-radius: 7px;

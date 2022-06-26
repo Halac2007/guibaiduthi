@@ -45,14 +45,17 @@
                 <form method="post" enctype="multipart/form-data">
                 <p style="text-align: center; font-size: 1.5rem; font-weight: bold;">GỬI BÀI DỰ THI</p>
                     <?php
-                      
+                     
+                     
+                    
                         if (isset($_POST['submit']))
                         {
                       
                           $name = $_POST['name'];    
                           $sodienthoai = $_POST['sodienthoai']; 
                           $email = $_POST['email']; 
-                          $content = $_POST['content'];                    
+                          $content = $_POST['content'];     
+                                         
  
                           if (isset($_FILES['pdf_file']['name']))
                           {  
@@ -140,5 +143,6 @@
             
         </div>
     </div>
+   
 </body>
 </html>

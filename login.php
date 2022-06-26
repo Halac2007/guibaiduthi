@@ -6,8 +6,7 @@ if(isset($_POST['but_submit'])){
 
     $uname = mysqli_real_escape_string($con,$_POST['txt_uname']);
     $password = mysqli_real_escape_string($con,$_POST['txt_pwd']);
-
-
+   
     if ($uname != "" && $password != ""){
 
         $sql_query = "select count(*) as cntUser from users where username='".$uname."' and password='".$password."'";
@@ -20,7 +19,9 @@ if(isset($_POST['but_submit'])){
             $_SESSION['uname'] = $uname;
             header('Location: admin.php');
         }else{
-            echo "Tên người dùng và mật khẩu không hợp lệ";
+            echo "<script>alert('Tên người dùng hoặc mật khẩu không hợp lệ!');</script>";
+
+            
         }
 
     }
@@ -30,7 +31,7 @@ if(isset($_POST['but_submit'])){
 <html>
     <head>
         <title>Create simple login page with PHP and MySQL</title>
-        <link href="style.css" rel="stylesheet" type="text/css">
+     
     </head>
     <style>
       
@@ -38,6 +39,7 @@ if(isset($_POST['but_submit'])){
 .container{
     width:40%;
     margin:0 auto;
+    margin-top: 10%;
 }
 
 /* Login */
@@ -95,7 +97,7 @@ if(isset($_POST['but_submit'])){
         <div class="container">
             <form method="post" action="">
                 <div id="div_login">
-                    <h1>Login</h1>
+                    <h1>Đăng nhập</h1>
                     <div>
                         <input type="text" class="textbox" id="txt_uname" name="txt_uname" placeholder="Username" />
                     </div>
@@ -103,8 +105,9 @@ if(isset($_POST['but_submit'])){
                         <input type="password" class="textbox" id="txt_uname" name="txt_pwd" placeholder="Password"/>
                     </div>
                     <div>
-                        <input type="submit" value="Submit" name="but_submit" id="but_submit" />
+                        <input type="submit" value="Đăng nhập" name="but_submit" id="but_submit" />
                     </div>
+                   
                 </div>
             </form>
         </div>
